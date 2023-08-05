@@ -6,25 +6,43 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
-    [SerializeField] float speed = 3;
+    [SerializeField]Animator m_Animator;
+    private float timer;
+    Rigidbody2D m_Rigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = Player.transform.position;
+        m_Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if(timer > 3)
+        {
+            Destroy(gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            m_Animator.SetTrigger("Get");
+        }
     }
 
-    public void Shot(Vector2 target)
+   
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        transform.position = Vector2.MoveTowards(transform.position,
-        target, speed * Time.deltaTime);
+        if (collision.CompareTag("Enemy"))
+        {
+            m_Animator.SetTrigger("Get");
+           m_Rigidbody.velocity = Vector3.zero;
+            
+        }
+    }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

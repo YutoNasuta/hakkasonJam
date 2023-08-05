@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float Speed;
     private GameObject m_object;
     Vector3 currentPos;
+    [SerializeField] private float HP;
+    [SerializeField] float currentHP;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] Image HPbar;
     // Start is called before the first frame update
     void Start()
     {
-        m_object = GetComponent<GameObject>();
+        //m_object = GetComponent<GameObject>();
+        currentHP = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        //InMap();
-        
-
-        
+        Debug.Log(currentHP / HP);
     }
+
 
     void Move()
     {
@@ -39,22 +43,6 @@ public class Player : MonoBehaviour
 
         gameObject.transform.Translate(leftStickValue.x * Time.deltaTime * Speed,
             leftStickValue.y * Time.deltaTime * Speed,0);
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    gameObject.transform.Translate(Vector3.left * Time.deltaTime * Speed);
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    gameObject.transform.Translate(Vector3.right * Time.deltaTime * Speed);
-        //}
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    gameObject.transform.Translate(Vector3.up * Time.deltaTime * Speed);
-        //}
-        //if (Input.GetKey(KeyCode.S))
-        //{
-        //    gameObject.transform.Translate(Vector3.down * Time.deltaTime * Speed);
-        //}
     }
 
     void InMap()
@@ -66,4 +54,14 @@ public class Player : MonoBehaviour
 
         transform.position = currentPos;
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            currentHP -= 1/* * (1.1f - gameManager.getExharPer())*/;
+        }
+    }
+
+    
 }
