@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class PlayerAnimation : MonoBehaviour
             return;
         }
         animator.SetTrigger("State4");
+
+        
+
+        
+        
     }
 
     public void Reset()

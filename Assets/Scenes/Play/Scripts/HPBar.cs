@@ -13,6 +13,8 @@ public class HPBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float Per = m_Player.GetHPPer();
+        Debug.Log(Per);
+        m_Image.fillAmount = Per;
     }
 }

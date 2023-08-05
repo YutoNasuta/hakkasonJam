@@ -60,6 +60,12 @@ public class EnemyManager : MonoBehaviour
 
         instance.transform.position = new Vector3(Player.transform.position.x + dicex,
             Player.transform.position.y + dicey, transform.position.z);
+
+        if(gameManager.getWave() % 2 == 0)
+        {
+            ENEMY eNEMY = instance.GetComponent<ENEMY>();
+            eNEMY.SetSpeed(0.3f);
+        }
         
     }
 
@@ -78,6 +84,7 @@ public class EnemyManager : MonoBehaviour
                 gameManager.NextWave();
                 spawnEnemy = StartEnemyNum + plusenemy * gameManager.getWave();
                 Spaw();
+                return;
             }
         }
     }

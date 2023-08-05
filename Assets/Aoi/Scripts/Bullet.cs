@@ -7,12 +7,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]Animator m_Animator;
+    [SerializeField]GameManager m_GameManager;
     private float timer;
     Rigidbody2D m_Rigidbody;
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
+        m_GameManager = GameObject.Find("GameManger").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Bullet : MonoBehaviour
         {
             m_Animator.SetTrigger("Get");
            m_Rigidbody.velocity = Vector3.zero;
-            
+            m_GameManager.GetScore(100);
         }
     }
 

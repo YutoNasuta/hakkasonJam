@@ -39,4 +39,9 @@ public class ENEMY : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void SetSpeed(float i)
+    {
+        speed += i;
+    }
 }

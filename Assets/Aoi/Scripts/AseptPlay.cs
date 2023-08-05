@@ -42,7 +42,7 @@ public class AseptPlay : MonoBehaviour
             Player.transform.position.y, Player.transform.position.z - 20);
         Vector3 currentPos = transform.position;
         currentPos = transform.position;
-        currentPos.x = Mathf.Clamp(currentPos.x, -22.65f, 122.65f);
+        currentPos.x = Mathf.Clamp(currentPos.x, -22.65f, 22.65f);
 
         currentPos.y = Mathf.Clamp(currentPos.y, -20.55f, 20.55f);
 
