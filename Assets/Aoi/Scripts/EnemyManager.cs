@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField]GameManager gameManager;
     [SerializeField] GameObject Player;
-    private int plusenemy = 5;
+    private int plusenemy = 3;
     private ObejectPoller Poller;
     [SerializeField] private int StartEnemyNum = 10;
     private int spawnEnemy;
@@ -21,20 +21,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < spawnEnemy; i++)
-        {
-            GameObject newinstance = Poller.getObjectFromPool();
-            if (newinstance.activeInHierarchy) continue;
-            gameManager.NextWave();
-            spawnEnemy = StartEnemyNum + plusenemy * gameManager.getWave();
-            Spaw();
-        }
-        //if(Input.GetKeyDown(KeyCode.L))
-        //{
-        //    gameManager.NextWave();
-        //    spawnEnemy = StartEnemyNum + plusenemy * gameManager.getWave();
-        //    Spaw();
-        //}
+        NextWave();
     }
 
     void Spaw()
@@ -49,15 +36,47 @@ public class EnemyManager : MonoBehaviour
 
     void SetEnemy(GameObject instance)
     {
-        float dicex = Random.Range(-6f,6f);
-        float dicey = Random.Range(-6f,6f);
-        //dicex = Mathf.Clamp(dicex, -6f, -3f);
-        //dicex = Mathf.Clamp(dicex, 3f, 6f);
-        //dicey = Mathf.Clamp(dicey, -6f, -3f);
-        //dicey = Mathf.Clamp(dicey, 3f, 6f);
+        float dicex;
+        float dicey;
+        if(Random.Range(2,10) % 2 == 0)
+        {
+            dicex = Random.Range(3,6);
+        }
+        else
+        {
+            dicex = Random.Range(-6, -3);
+        }
+        if (Random.Range(2, 10) % 2 == 0)
+        {
+            dicey = Random.Range(3, 6);
+        }
+        else
+        {
+            dicey = Random.Range(-6, -3);
+        }
+        
 
         instance.transform.position = new Vector3(Player.transform.position.x + dicex,
             Player.transform.position.y + dicey, transform.position.z);
         
+    }
+
+    void NextWave()
+    {
+        int num = 0;
+        for (int i = 0; i < spawnEnemy; i++)
+        {
+
+            GameObject newinstance = Poller.GetOvject(i);
+            if (newinstance.activeInHierarchy) continue;
+            num++;
+            if (num >= spawnEnemy)
+            {
+
+                gameManager.NextWave();
+                spawnEnemy = StartEnemyNum + plusenemy * gameManager.getWave();
+                Spaw();
+            }
+        }
     }
 }

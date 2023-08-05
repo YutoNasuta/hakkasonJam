@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObejectPoller : MonoBehaviour
@@ -62,5 +63,10 @@ public class ObejectPoller : MonoBehaviour
     public static void RetrunToPool(GameObject instance)
     {
         instance.SetActive(false);
+    }
+
+    public GameObject GetOvject(int i)
+    {
+        return pool[i];
     }
 }
