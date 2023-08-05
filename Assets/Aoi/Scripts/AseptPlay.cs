@@ -14,7 +14,7 @@ public class AseptPlay : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z - 20);
+        PlayerSet();
         var screenAspect = Screen.width / (float)Screen.height; //画面のアスペクト比
         var targetAspect = aspectVec.x / aspectVec.y; //目的のアスペクト比
 
@@ -34,5 +34,18 @@ public class AseptPlay : MonoBehaviour
         }
 
         targetCamera.rect = viewportRect; //カメラのViewportに適用
+    }
+
+    void PlayerSet()
+    {
+        transform.position = new Vector3(Player.transform.position.x,
+            Player.transform.position.y, Player.transform.position.z - 20);
+        Vector3 currentPos = transform.position;
+        currentPos = transform.position;
+        currentPos.x = Mathf.Clamp(currentPos.x, -22.65f, 122.65f);
+
+        currentPos.y = Mathf.Clamp(currentPos.y, -20.55f, 20.55f);
+
+        transform.position = currentPos;
     }
 }

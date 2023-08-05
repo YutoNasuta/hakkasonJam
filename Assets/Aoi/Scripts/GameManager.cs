@@ -31,4 +31,9 @@ public class GameManager : MonoBehaviour
     {
         return currenntWave;
     }
+
+    public float getExharPer()
+    {
+        return currentExhau / exhau;
+    }
 }
