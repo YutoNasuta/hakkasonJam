@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        InMap();
+        //InMap();
        
     }
 
