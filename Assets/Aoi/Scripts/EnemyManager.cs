@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     private ObejectPoller Poller;
     [SerializeField] private int StartEnemyNum = 10;
     private int spawnEnemy;
+    [SerializeField] private float SpawnMax;
+    [SerializeField] private float SpawnMin;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,19 +42,19 @@ public class EnemyManager : MonoBehaviour
         float dicey;
         if(Random.Range(2,10) % 2 == 0)
         {
-            dicex = Random.Range(3,6);
+            dicex = Random.Range(SpawnMin,SpawnMax);
         }
         else
         {
-            dicex = Random.Range(-6, -3);
+            dicex = Random.Range(-SpawnMax, -SpawnMin);
         }
         if (Random.Range(2, 10) % 2 == 0)
         {
-            dicey = Random.Range(3, 6);
+            dicey = Random.Range(SpawnMin, SpawnMax);
         }
         else
         {
-            dicey = Random.Range(-6, -3);
+            dicey = Random.Range(-SpawnMax, -SpawnMin);
         }
         
 
