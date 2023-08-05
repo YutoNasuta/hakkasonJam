@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private int currenntWave = 1;
     [SerializeField] float exhau;
     private float currentExhau;
+    [SerializeField] Image Clothbar;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         currentExhau -= Time.deltaTime;
-        Debug.Log(currentExhau);
+        Clothbar.fillAmount = currentExhau / exhau;
     }
 
     public void NextWave()
