@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
         timer += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            if (timer > 0.5f)
+            if (timer > 0.7f)
             {
                 timer = 0;
                 // 弾（ゲームオブジェクト）の生成

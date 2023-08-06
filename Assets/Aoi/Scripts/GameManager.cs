@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,11 +18,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI Tscore;
     [SerializeField] WaveText waveText;
     public static int score;
+    public static int ScorePoint;
     // Start is called before the first frame update
     void Start()
     {
         currentExhau = exhau;
         score = 0;
+        ScorePoint = 0;
     }
 
     // Update is called once per frame
@@ -30,7 +33,8 @@ public class GameManager : MonoBehaviour
         currentExhau -= Time.deltaTime;
         Clothbar.fillAmount = currentExhau / exhau;
         timer -= Time.deltaTime;
-        if(timer > 180) {
+        if(timer <= 0) {
+            ScorePoint = Player.GetCloth;
             GameFinish();
         }
         TextUpdate();
@@ -53,9 +57,9 @@ public class GameManager : MonoBehaviour
         return currentExhau / exhau;
     }
 
-    void GameFinish()
+    public void GameFinish()
     {
-
+        SceneManager.LoadScene("Result");
     }
 
     public void Repair()
@@ -95,4 +99,6 @@ public class GameManager : MonoBehaviour
     {
         score += i;
     }
+
+    
 }

@@ -54,6 +54,12 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 0);
         }
+
+        if(currentHP <= 0)
+        {
+            GameManager.ScorePoint = 10;
+            gameManager.GameFinish();
+        }
     }
 
     void InMap()

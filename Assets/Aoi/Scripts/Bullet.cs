@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]Animator m_Animator;
     [SerializeField]GameManager m_GameManager;
+    BoxCollider2D m_BoxCollider;
     private float timer;
     Rigidbody2D m_Rigidbody;
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class Bullet : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_GameManager = GameObject.Find("GameManger").GetComponent<GameManager>();
+        m_BoxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class Bullet : MonoBehaviour
             m_Animator.SetTrigger("Get");
            m_Rigidbody.velocity = Vector3.zero;
             m_GameManager.GetScore(100);
+            m_BoxCollider.enabled = false;
         }
     }
 
