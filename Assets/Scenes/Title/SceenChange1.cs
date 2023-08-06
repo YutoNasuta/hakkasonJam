@@ -45,7 +45,7 @@ public class SceenChange1 : MonoBehaviour
         if (color.a >= MAXAlpha) // アルファ値が最大値に達したらシーンを切り替える
         {
             Debug.Log("!!!!");
-            SceneManager.LoadScene(nextSceneName);　//シーン遷移
+            SceneManager.LoadScene("SampleScene");　//シーン遷移
         }
 
         image.color = color;
